@@ -124,20 +124,6 @@ FURNIRO
 
 3. Deploy to platforms like [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
 
----
-
-## 🖼️ **Screenshots**
-
-### **Homepage**
-![Homepage](./public/images/homepage-screenshot.png)
-
-### **Shop Page**
-![Shop Page](./public/images/shop-screenshot.png)
-
-### **Contact Page**
-![Contact Page](./public/images/contact-screenshot.png)
-
----
 
 ## 🔮 **Future Enhancements**
 
