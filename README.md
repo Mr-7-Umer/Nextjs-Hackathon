@@ -172,4 +172,3 @@ This project is licensed under the [MIT License](./LICENSE).
 ---
 
 ### Thank You for Checking Out **Furniro**! ✨
-```
