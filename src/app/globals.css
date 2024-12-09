@@ -2,111 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-/* --------------------- NAVBAR ----------------------------- */
-.navbar {
-  @apply flex justify-between items-center px-8 py-4;
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-.navbar .head {
-  @apply flex gap-8;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+  }
 }
 
-.navbar .icons {
-  @apply flex gap-8;
-}
-
-/* ---------------------- HERO SECTION ----------------------------------- */
-.heroImage {
-  /* Add specific styles if needed */
-}
-
-.heroText {
-  @apply absolute top-1/2 left-1/2 rounded-md px-16 py-8 leading-8;
-  width: 34rem;
-  transform: translate(-50%, -50%);
-}
-
-.heroText h6 {
-  @apply font-bold;
-}
-
-.heroText h3 {
-  @apply text-4xl font-extrabold text-[#B88E2F];
-}
-
-.heroText .buyBtn {
-  @apply bg-[#B88E2F] px-12 py-2 text-white;
-}
-
-/* ---------------------------- SUBTEXT SECTION ---------------------------- */
-.subText {
-  @apply text-center;
-}
-
-.subText h3 {
-  @apply text-2xl font-bold text-[#292826];
-}
-
-.imgArea {
-  @apply flex justify-center items-center gap-4 mt-4;
-}
-
-.imgArea h6 {
-  @apply text-center font-bold;
-}
-
-/* ------------------------------ CARDS ------------------------------------ */
-.cardsContainer {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-5 justify-items-center;
-}
-
-.productBtn {
-  @apply self-center;
-}
-
-/* ------------------------------ SLIDE SECTION --------------------------- */
-.slideSection {
-  @apply grid grid-cols-1 sm:grid-cols-3 gap-6 px-8;
-}
-
-/* ------------------------------ SHOP SECTION ---------------------------- */
-.shopsect h3,
-.shopsect .shopPara {
-  @apply absolute top-[30%] left-[50%] text-center;
-  transform: translate(-50%, -50%);
-}
-
-.shopsect .shopPara {
-  @apply top-[35%];
-}
-
-/* ------------------------------ GLOBAL STYLES ---------------------------- */
 body {
-  @apply bg-white font-sans m-0 p-0;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-button {
-  @apply cursor-pointer;
+@font-face {
+  font-family: "Poppins-Regular";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
 }
 
-/* ------------------------------ CONTACT SECTION ------------------------- */
-.contact-banner {
-  @apply bg-[#F9F1E7];
+@font-face {
+  font-family: "Poppins-SemiBold";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Inter-SemiBold";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/fonts/Inter_24pt-SemiBold.ttf") format("truetype");
 }
 
-/* ------------------------------ FOOTER SECTION -------------------------- */
-.footer {
-  @apply flex justify-around gap-4;
-}
-
-.footer input {
-  @apply outline-none;
-}
-
-footer hr {
-  @apply mx-auto mt-4 w-full sm:w-[1000px];
-}
-
-footer .para p {
-  @apply font-normal absolute left-[13%] py-8;
+@font-face {
+  font-family: "Poppins-Bold";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
 }

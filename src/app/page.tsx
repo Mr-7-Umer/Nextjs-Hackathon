@@ -1,17 +1,20 @@
-import Hero from "@/components/Hero";
-import Products from "@/components/Products";
-import Slides from "@/components/Slides";
-import SubHero from "@/components/Subhero";
+'use client';
 
-export default function Home(){
+import React from 'react';
+import Hero from './components/Hero'; 
+import Browse from './components/Browse';
+import Products from './components/Products';
+import Rooms from './components/Rooms';
+import Furniture from './components/Furniture';
+
+export default function LandingPage() {
   return (
-    <>
-    {/* <Header/> */}
-    <Hero/>
-    <SubHero/>
-    <Products/>
-    <Slides/>
-    {/* <Footer/> */}
-    </>
-  )
+    <div>
+      <Hero />
+      <Browse />
+      <Products />
+      <Rooms />
+      <Furniture />
+    </div>
+  );
 }
