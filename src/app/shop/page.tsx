@@ -1,15 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
-import {
-  Share2,
-  Heart,
-  BarChart2,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { Share2, Heart, BarChart2, ChevronRight } from "lucide-react";
 
 // Product Interface
 interface Product {
@@ -89,38 +83,14 @@ const paginationItems = [
 ];
 
 export default function ShopHeader() {
-  const [scrollPosition, setScrollPosition] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction: "left" | "right") => {
-    const container = containerRef.current;
-    if (container) {
-      const cardWidth = 320; // Adjusted card width
-      const containerWidth = container.offsetWidth;
-      const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
-      const newPosition = scrollPosition + scrollAmount;
-
-      // Clamp the scroll position within bounds
-      const maxScroll = container.scrollWidth - containerWidth;
-      const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll));
-
-      // Smooth scroll to the nearest card
-      const nearestCardPosition =
-        Math.round(clampedPosition / cardWidth) * cardWidth;
-
-      container.scrollTo({
-        left: clampedPosition,
-        behavior: "smooth",
-      });
-      setScrollPosition(clampedPosition);
-    }
-  };
-
+  // Sync scroll position if needed
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
       const handleScroll = () => {
-        setScrollPosition(container.scrollLeft);
+        // Scroll logic could go here if needed in the future
       };
       container.addEventListener("scroll", handleScroll);
       return () => container.removeEventListener("scroll", handleScroll);
@@ -237,11 +207,8 @@ export default function ShopHeader() {
               {item.label}
             </button>
           ))}
-
-          
         </div>
       </section>
-    
     </>
   );
 }
