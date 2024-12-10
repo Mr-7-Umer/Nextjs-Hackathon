@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+// Array of gallery images with metadata
 const galleryImages = [
   {
     id: "1",
@@ -84,10 +85,12 @@ const galleryImages = [
   },
 ];
 
+// Furniture gallery component
 export default function Furniture() {
   return (
     <section className="w-full py-16 md:py-24 px-4 font-poppins overflow-hidden">
       <div className="max-w-[1920px] mx-auto">
+        {/* Section Heading */}
         <div className="text-center mb-16">
           <h2 className="text-[#3A3A3A] text-2xl md:text-3xl font-medium mb-2">
             Share your setup with
@@ -98,7 +101,7 @@ export default function Furniture() {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid grid-cols-13 grid-rows-3 gap-4 h-[800px]">
+        <div className="hidden lg:grid grid-cols-[repeat(13,1fr)] grid-rows-[repeat(3,minmax(200px,auto))] gap-6 h-[850px]">
           {galleryImages.map((image) => (
             <div
               key={image.id}
@@ -110,20 +113,20 @@ export default function Furniture() {
                 width={image.width}
                 height={image.height}
                 quality={100}
-                className="w-full h-full object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover rounded-lg hover:scale-110 transition-transform duration-300"
               />
             </div>
           ))}
         </div>
 
         {/* Mobile Layout */}
-        <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 gap-6">
           {galleryImages.map((image) => (
             <div
               key={image.id}
-              className={`${
+              className={`overflow-hidden ${
                 image.id === "5" ? "sm:col-span-2" : ""
-              } overflow-hidden ${image.className}`}
+              }`}
             >
               <Image
                 src={image.src}
@@ -131,7 +134,7 @@ export default function Furniture() {
                 width={image.width}
                 height={image.height}
                 quality={100}
-                className="rounded-lg hover:scale-105 transition-transform duration-300"
+                className="rounded-lg hover:scale-110 transition-transform duration-300"
               />
             </div>
           ))}

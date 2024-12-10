@@ -10,19 +10,21 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+//  structure of a product
 interface Product {
   id: string;
   name: string;
   image: string;
   category: string;
   price: number;
-  originalPrice?: number;
+  originalPrice?: number; // Optional original price
   badge?: {
-    text: string;
-    color: string;
+    text: string; // Badge text, -50% , New
+    color: string; // Badge background color
   };
 }
 
+//  list of products
 const products: Product[] = [
   {
     id: "1",
@@ -31,17 +33,14 @@ const products: Product[] = [
     category: "Stylish cafe chair",
     price: 2500000,
     originalPrice: 3500000,
-    badge: {
-      text: "-30%",
-      color: "bg-[#E97171]",
-    },
+    badge: { text: "-30%", color: "bg-[#E97171]" },
   },
   {
     id: "2",
     name: "Leviosa",
-    image: "/images/respira.png",
-    category: "Stylish cafe chair",
-    price: 2500000,
+    image: "/images/leviosa.png",
+    category: "Ergonomic office chair",
+    price: 4500000,
   },
   {
     id: "3",
@@ -50,10 +49,7 @@ const products: Product[] = [
     category: "Luxury big sofa",
     price: 7000000,
     originalPrice: 14000000,
-    badge: {
-      text: "-50%",
-      color: "bg-[#E97171]",
-    },
+    badge: { text: "-50%", color: "bg-[#E97171]" },
   },
   {
     id: "4",
@@ -61,10 +57,7 @@ const products: Product[] = [
     image: "/images/respira.png",
     category: "Outdoor bar table and stool",
     price: 500000,
-    badge: {
-      text: "New",
-      color: "bg-[#2EC1AC]",
-    },
+    badge: { text: "New", color: "bg-[#2EC1AC]" },
   },
   {
     id: "5",
@@ -79,10 +72,7 @@ const products: Product[] = [
     image: "/images/muggo.png",
     category: "Small mug",
     price: 150000,
-    badge: {
-      text: "New",
-      color: "bg-[#2EC1AC]",
-    },
+    badge: { text: "New", color: "bg-[#2EC1AC]" },
   },
   {
     id: "7",
@@ -91,10 +81,7 @@ const products: Product[] = [
     category: "Cute bed set",
     price: 7000000,
     originalPrice: 14000000,
-    badge: {
-      text: "-50%",
-      color: "bg-[#E97171]",
-    },
+    badge: { text: "-50%", color: "bg-[#E97171]" },
   },
   {
     id: "8",
@@ -102,30 +89,28 @@ const products: Product[] = [
     image: "/images/potty.png",
     category: "Minimalist flower pot",
     price: 500000,
-    badge: {
-      text: "New",
-      color: "bg-[#2EC1AC]",
-    },
+    badge: { text: "New", color: "bg-[#2EC1AC]" },
   },
+  
 ];
 
 export default function Products() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollPosition, setScrollPosition] = useState(0); // Track current scroll position
+  const containerRef = useRef<HTMLDivElement>(null); // Ref for the product container
 
+  // Function to handle horizontal scrolling
   const scroll = (direction: "left" | "right") => {
     const container = containerRef.current;
     if (container) {
       const cardWidth = 300; // Width of each card
-      const containerWidth = container.offsetWidth;
       const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
       const newPosition = scrollPosition + scrollAmount;
 
-      // Ensure the new position is within bounds
-      const maxScroll = container.scrollWidth - containerWidth;
+      // Clamp the scroll position within bounds
+      const maxScroll = container.scrollWidth - container.offsetWidth;
       const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll));
 
-      // Calculate the nearest card start position
+      // Snap to the nearest card
       const nearestCardPosition =
         Math.round(clampedPosition / cardWidth) * cardWidth;
 
@@ -133,16 +118,15 @@ export default function Products() {
         left: nearestCardPosition,
         behavior: "smooth",
       });
-      setScrollPosition(nearestCardPosition);
+      setScrollPosition(nearestCardPosition); // Update scroll position
     }
   };
 
+  // Sync scroll position with the container's actual scroll
   useEffect(() => {
     const container = containerRef.current;
     if (container) {
-      const handleScroll = () => {
-        setScrollPosition(container.scrollLeft);
-      };
+      const handleScroll = () => setScrollPosition(container.scrollLeft);
       container.addEventListener("scroll", handleScroll);
       return () => container.removeEventListener("scroll", handleScroll);
     }
@@ -151,13 +135,16 @@ export default function Products() {
   return (
     <section className="py-16 md:py-24 px-4 font-poppins">
       <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-[#3A3A3A] text-3xl md:text-4xl font-bold mb-4">
             Our Products
           </h2>
         </div>
 
+        {/* Product Carousel */}
         <div className="relative">
+          {/* Scrollable Product Container */}
           <div
             ref={containerRef}
             className="flex overflow-x-auto scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-4 px-[16px] sm:px-0"
@@ -167,6 +154,7 @@ export default function Products() {
                 key={product.id}
                 className="group flex-shrink-0 w-[280px] sm:w-auto"
               >
+                {/* Product Card */}
                 <div className="relative bg-[#F4F5F7] rounded-sm overflow-hidden">
                   <Image
                     src={product.image}
@@ -177,7 +165,7 @@ export default function Products() {
                     className="w-full h-[301px] object-cover"
                   />
 
-                  {/* Hover Overlay */}
+                  {/* Hover Overlay with Actions */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                       <button className="w-52 bg-white text-[#B88E2F] px-10 py-3 rounded-sm hover:bg-[#B88E2F] hover:text-white transition-colors duration-300">
@@ -200,7 +188,7 @@ export default function Products() {
                     </div>
                   </div>
 
-                  {/* Badge */}
+                  {/* Badge for Discounts or New Items */}
                   {product.badge && (
                     <div
                       className={`absolute top-5 right-5 ${product.badge.color} text-white text-sm font-bold px-4 py-1 rounded-sm`}
@@ -210,6 +198,7 @@ export default function Products() {
                   )}
                 </div>
 
+                {/* Product Info */}
                 <div className="mt-4 text-center">
                   <h3 className="text-[#3A3A3A] text-2xl font-semibold mb-1">
                     {product.name}
@@ -230,11 +219,10 @@ export default function Products() {
             ))}
           </div>
 
-          {/* Chevron buttons */}
+          {/* Scroll Buttons */}
           <button
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md sm:hidden"
-            style={{ left: "-16px" }}
             aria-label="Scroll left"
           >
             <ChevronLeft className="w-6 h-6 text-gray-600" />
@@ -242,13 +230,13 @@ export default function Products() {
           <button
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md sm:hidden"
-            style={{ right: "-16px" }}
             aria-label="Scroll right"
           >
             <ChevronRight className="w-6 h-6 text-gray-600" />
           </button>
         </div>
 
+        {/* Show More Button */}
         <div className="mt-16 text-center">
           <button className="border-2 border-[#B88E2F] text-[#B88E2F] px-8 py-3 hover:bg-[#B88E2F] hover:text-white transition-colors duration-300">
             Show More
