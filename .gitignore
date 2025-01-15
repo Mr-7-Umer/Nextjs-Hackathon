@@ -22,6 +22,7 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
 
 # debug
@@ -29,12 +30,22 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (do not commit environment variables)
+.env
+.env.*        # This ensures all env files, including .env.local, are ignored.
 
 # vercel
 .vercel
+.vscode       # Optional: If you want to ignore VSCode configuration files.
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# logs
+*.log
+
+# macOS-specific
+.idea         # IntelliJ IDEA files
+*.swp         # Swap files
+*.swo
