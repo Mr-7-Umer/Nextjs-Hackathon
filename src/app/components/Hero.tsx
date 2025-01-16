@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Hero() {
   return (
@@ -22,16 +22,13 @@ export default function Hero() {
             New Arrival
           </span>
           <h1 className="text-brown text-4xl lg:text-5xl xl:text-6xl font-semibold mb-6 leading-tight font-poppinsSemiBold">
-            Discover Our
-            <br />
-            New Collection
+            Discover Our<br />New Collection
           </h1>
           <p className="text-gray-700 text-base lg:text-lg mb-8 ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-            tellus, luctus nec ullamcorper mattis.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
           </p>
           <div>
-            <Link
+            <Link 
               href="/shop"
               className="inline-block bg-[#B88A44] text-white px-12 py-4 text-sm lg:text-base font-poppinsSemiBold hover:bg-[#A67934] transition-colors duration-300 "
             >
@@ -41,5 +38,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  );
+  )
 }
+

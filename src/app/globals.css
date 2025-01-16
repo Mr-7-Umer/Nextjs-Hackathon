@@ -21,28 +21,28 @@ body {
 }
 
 @font-face {
-  font-family: "Poppins-Regular";
+  font-family: 'Poppins-Regular';
   font-weight: 400;
   font-style: normal;
-  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  src: url('/fonts/Poppins-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Poppins-SemiBold";
+  font-family: 'Poppins-SemiBold';
   font-weight: 600;
   font-style: normal;
-  src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+  src: url('/fonts/Poppins-SemiBold.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Inter-SemiBold";
+  font-family: 'Inter-SemiBold';
   font-weight: 600;
   font-style: normal;
-  src: url("/fonts/Inter_24pt-SemiBold.ttf") format("truetype");
+  src: url('/fonts/Inter_24pt-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Poppins-Bold";
+  font-family: 'Poppins-Bold';
   font-weight: 700;
   font-style: normal;
-  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url('/fonts/Poppins-Bold.ttf') format('truetype');
 }

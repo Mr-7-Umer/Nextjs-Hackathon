@@ -1,174 +1,36 @@
-# 🛋️ **Furniro - Modern Furniture eCommerce Website**
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Furniro is a sleek, responsive eCommerce platform designed for furniture shopping. With its clean design, reusable components, and optimized performance, Furniro offers users a seamless shopping experience.
+## Getting Started
 
-Developed with ❤️ by **Muhammad Umer**.
+First, run the development server:
 
----
-
-## 🌟 **Features**
-
-### 🔹 **Modern and Responsive Design**
-- Fully mobile-friendly for smooth browsing on all devices.
-
-### 🔹 **Home Section**
-- Hero section with a visually appealing, minimalistic layout.
-
-### 🔹 **Shop Page**
-- **Product Listings**: Beautiful product cards with images, names, prices, and badges.
-- **Pagination**: Easy browsing of large product catalogs.
-
-### 🔹 **Contact Page**
-- Functional contact form with fields for name, email, subject, and message.
-- Displays essential company contact details (address, phone, working hours).
-
-### 🔹 **Footer**
-- Quick links, newsletter subscription, and company details.
-- Highlights key benefits (e.g., high quality, warranty, free shipping, 24/7 support).
-
-### 🔹 **Performance Optimizations**
-- Built with **Tailwind CSS** for efficient and scalable styling.
-- **Next.js Image Optimization** for fast page loads.
-
-### 🔹 **Reusable Components**
-- Modular structure for easy maintainability and scalability.
-
-### 🔹 **Cross-Browser Compatibility**
-- Tested across all major browsers for a consistent user experience.
-
----
-
-## 🛠️ **Technology Stack**
-
-| **Category**      | **Technology**                 |
-|-------------------|--------------------------------|
-| Frontend Framework| [Next.js](https://nextjs.org/) |
-| CSS Framework     | [Tailwind CSS](https://tailwindcss.com/) |
-| Icons             | [Lucide Icons](https://lucide.dev/) |
-| Deployment Ready  | [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/) |
-
----
-
-## 📂 **Project Structure**
-
-```
-FURNIRO
-├── public/
-│   ├── images/ (All static assets)
-├── src/
-│   ├── components/
-│   │   ├── Hero.tsx
-│   │   ├── Browse.tsx
-│   │   ├── Products.tsx
-│   │   ├── Rooms.tsx
-│   │   ├── Furniture.tsx
-│   ├── app/
-│   │   ├── page.tsx (Main Landing Page)
-│   │   ├── shop/ (Shop Page)
-│   │   ├── contact/ (Contact Page)
-│   ├── globals.css (Global Tailwind Styles)
-├── README.md (Documentation)
-├── package.json (Dependencies and Scripts)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
----
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🚀 **Getting Started**
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-### 🔧 Prerequisites
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- **Node.js** (16.x or higher) and npm or yarn installed.
+## Learn More
 
-### 📥 Installation
+To learn more about Next.js, take a look at the following resources:
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/furniro.git
-   cd furniro
-   ```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-2. **Install Dependencies**:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-3. **Run the Development Server**:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+## Deploy on Vercel
 
-4. Open the app in your browser: [http://localhost:3000](http://localhost:3000)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-## 🌐 **Deployment**
-
-### **Steps to Deploy**:
-1. Build for production:
-   ```bash
-   npm run build
-   # or
-   yarn build
-   ```
-
-2. Start the production server:
-   ```bash
-   npm start
-   # or
-   yarn start
-   ```
-
-3. Deploy to platforms like [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/).
-
-
-## 🔮 **Future Enhancements**
-
-- **User Authentication**: Enable login and signup for personalized experiences.
-- **Advanced Filtering**: Add filters for categories, colors, and sizes.
-- **Integrated Checkout**: Connect payment gateways for smooth transactions.
-- **Admin Dashboard**: Manage products, orders, and inventory.
-- **Customer Reviews**: Allow customers to add reviews and ratings.
-
----
-
-## 🤝 **Contributing**
-
-We ❤️ contributions! Here's how you can contribute:
-
-1. Fork the repository.
-2. Create a feature branch:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add new feature"
-   ```
-4. Push to your branch:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. Open a pull request.
-
----
-
-## 📄 **License**
-
-This project is licensed under the [MIT License](./LICENSE).
-
----
-
-## 📞 **Contact**
-
-- **Developer**: Muhammad Umer
-- **Email**: support@furniro.com
-- **Website**: [Furniro Official](https://furniro.com)
-- **Phone**: +1 (123) 456-7890
-
----
-
-### Thank You for Checking Out **Furniro**! ✨
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
