@@ -1,29 +1,30 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { ChevronRight, ChevronDown, Star } from 'lucide-react'
-import ComparisonSpecs from './comparison-specs'
+
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight, ChevronDown, Star } from "lucide-react";
+import ComparisonSpecs from "./comparison-specs";
 const features = [
-    {
-      icon: '/images/trophy.png',
-      title: 'High Quality',
-      description: 'crafted from top materials'
-    },
-    {
-      icon: '/images/tick.png',
-      title: 'Warranty Protection',
-      description: 'Over 2 years'
-    },
-    {
-      icon: '/images/gift.png',
-      title: 'Free Shipping',
-      description: 'Order over 150 $'
-    },
-    {
-      icon: '/images/support.png',
-      title: '24 / 7 Support',
-      description: 'Dedicated support'
-    }
-  ]
+  {
+    icon: "/images/trophy.png",
+    title: "High Quality",
+    description: "crafted from top materials",
+  },
+  {
+    icon: "/images/tick.png",
+    title: "Warranty Protection",
+    description: "Over 2 years",
+  },
+  {
+    icon: "/images/gift.png",
+    title: "Free Shipping",
+    description: "Order over 150 $",
+  },
+  {
+    icon: "/images/support.png",
+    title: "24 / 7 Support",
+    description: "Dedicated support",
+  },
+];
 
 export default function ComparisonPage() {
   return (
@@ -88,14 +89,22 @@ export default function ComparisonPage() {
                   className="object-contain w-[220px] py-3 rounded-lg bg-cream"
                 />
               </div>
-              <h3 className="text-base lg:text-xl font-medium mb-2">Asgaard Sofa</h3>
+              <h3 className="text-base lg:text-xl font-medium mb-2">
+                Asgaard Sofa
+              </h3>
               <p className="text-[#B88E2F] font-medium mb-2">Rs. 250,000.00</p>
               <div className="flex items-center gap-2">
                 <div className="flex">
                   {[1, 2, 3, 4].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
-                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" strokeWidth={1} />
+                  <Star
+                    className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                    strokeWidth={1}
+                  />
                 </div>
                 <span className="text-sm text-gray-500">4.7</span>
                 <span className="text-xs text-lightGray">204 Review</span>
@@ -114,14 +123,22 @@ export default function ComparisonPage() {
                   className="object-contain w-[220px] rounded-lg bg-cream"
                 />
               </div>
-              <h3 className="text-base lg:text-xl font-medium mb-2">Outdoor Sofa Set</h3>
+              <h3 className="text-base lg:text-xl font-medium mb-2">
+                Outdoor Sofa Set
+              </h3>
               <p className="text-[#B88E2F] font-medium mb-2">Rs. 224,000.00</p>
               <div className="flex items-center gap-2">
                 <div className="flex">
                   {[1, 2, 3, 4].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
-                  <Star className="w-4 h-4 fill-yellow-400/50 text-yellow-400" strokeWidth={1} />
+                  <Star
+                    className="w-4 h-4 fill-yellow-400/50 text-yellow-400"
+                    strokeWidth={1}
+                  />
                 </div>
                 <span className="text-sm text-gray-500">4.2</span>
                 <span className="text-xs text-lightGray">145 Review</span>
@@ -131,25 +148,24 @@ export default function ComparisonPage() {
 
           {/* Right Column */}
           <div className="flex flex-col p-8 rounded-lg col-span-2 lg:col-span-1">
-            <h2 className="text-2xl font-poppinsSemiBold mb-4">Add A Product</h2>
-            <button
-              
-              className="bg-brown w-60 lg:w-auto hover:bg-[#9d7829] text-white flex items-center gap-2 px-2 lg:px-3 py-2 rounded-md text-sm"
-            >
+            <h2 className="text-2xl font-poppinsSemiBold mb-4">
+              Add A Product
+            </h2>
+            <button className="bg-brown w-60 lg:w-auto hover:bg-[#9d7829] text-white flex items-center gap-2 px-2 lg:px-3 py-2 rounded-md text-sm">
               Choose a Product
               <ChevronDown className="ml-5 w-5 h-5" />
             </button>
           </div>
-          <div className='col-span-1 lg:col-span-3'>
-          <ComparisonSpecs/>
+          <div className="col-span-1 lg:col-span-3">
+            <ComparisonSpecs />
           </div>
         </div>
       </div>
       <div className="w-full bg-[#FAF3EA] mx-auto px-4 py-16 my-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {features.map((feature) => (
-            <div 
-              key={feature.title} 
+            <div
+              key={feature.title}
               className="flex items-center gap-4 pl-8 md:pl-0"
             >
               <div className="mb-4">
@@ -161,19 +177,18 @@ export default function ComparisonPage() {
                   quality={100}
                 />
               </div>
-              <div className='flex flex-col'>
-              <h3 className="text-[#333333] text-xl font-semibold mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-[#666666] text-base">
-                {feature.description}
-              </p>
+              <div className="flex flex-col">
+                <h3 className="text-[#333333] text-xl font-semibold mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-[#666666] text-base">
+                  {feature.description}
+                </p>
               </div>
             </div>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
-

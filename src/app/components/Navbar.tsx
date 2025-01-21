@@ -1,45 +1,75 @@
-'use client';
+"use client";
 
-import { useContext, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import CartMenu from './CartMenu';
-import {CounterContext} from '../contexts/CartCounter'
-
+import { useContext, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import CartMenu from "./CartMenu";
+import SearchModal from "./SearchModal";
+import { CounterContext } from "../contexts/CartCounter";
+import WishlistMenu from "./WishlistMenu";
+import { useWishlist } from "../contexts/WishlistContext";
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
-  const counter = useContext(CounterContext)  
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isCartMenuOpen, setIsCartMenuOpen] = useState<boolean>(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
+  const [isWishlistMenuOpen, setIsWishlistMenuOpen] = useState<boolean>(false);
+  const counter = useContext(CounterContext);
+  const wishlist = useWishlist();
 
   const toggleCartMenu = () => {
     setIsCartMenuOpen((prev) => !prev);
   };
 
+  const toggleSearchModal = () => {
+    setIsSearchModalOpen((prev) => !prev);
+  };
+
+  const toggleWishlistMenu = () => {
+    setIsWishlistMenuOpen((prev) => !prev);
+  };
+
   return (
     <>
-      <nav className="bg-white shadow-md font-poppins relative ">  
+      <nav className="bg-white shadow-md font-poppins relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20">
             {/* Logo */}
             <div className="flex items-center">
               <Link href="/" className="flex-shrink-0">
-                <Image src="/images/logo.png" alt="Logo" width={150} height={40} />
+                <Image
+                  src="/images/logo.png"
+                  alt="Logo"
+                  width={150}
+                  height={40}
+                />
               </Link>
             </div>
 
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex md:items-center sm:space-x-8">
-              <Link href="/" className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold">
+              <Link
+                href="/"
+                className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold"
+              >
                 Home
               </Link>
-              <Link href="/shop" className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold">
+              <Link
+                href="/shop"
+                className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold"
+              >
                 Shop
               </Link>
-              <Link href="/blog" className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold">
+              <Link
+                href="/blog"
+                className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold"
+              >
                 Blog
               </Link>
-              <Link href="/contact" className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold">
+              <Link
+                href="/contact"
+                className="text-gray-800 hover:text-gray-600 px-3 py-2 text-base font-poppinsSemiBold"
+              >
                 Contact
               </Link>
             </div>
@@ -47,31 +77,62 @@ export default function Navbar() {
             {/* Icons */}
             <div className="hidden md:flex md:items-center sm:space-x-9">
               <Link href="#" className="text-gray-800 hover:text-gray-600">
-                <Image src="/images/account-icon.png" alt="Account" width={22} height={22} quality={100} />
+                <Image
+                  src="/images/account-icon.png"
+                  alt="Account"
+                  width={22}
+                  height={22}
+                  quality={100}
+                />
               </Link>
-              <Link href="#" className="text-gray-800 hover:text-gray-600">
-                <Image src="/images/search-icon.png" alt="Search" width={22} height={22} quality={100} />
-              </Link>
-              <Link href="#" className="text-gray-800 hover:text-gray-600">
-                <Image src="/images/heart-icon.png" alt="Favorites" width={22} height={22} quality={100} />
-              </Link>
+              <button
+                onClick={toggleSearchModal}
+                className="text-gray-800 hover:text-gray-600"
+              >
+                <Image
+                  src="/images/search-icon.png"
+                  alt="Search"
+                  width={22}
+                  height={22}
+                  quality={100}
+                />
+              </button>
+              <button
+                onClick={toggleWishlistMenu}
+                className="text-gray-800 hover:text-gray-600 relative"
+              >
+                <Image
+                  src="/images/heart-icon.png"
+                  alt="Wishlist"
+                  width={22}
+                  height={22}
+                  quality={100}
+                />
+                {wishlist && wishlist.wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {wishlist.wishlistCount}
+                  </span>
+                )}
+              </button>
               {/* Cart Icon */}
               <button
                 className="text-gray-800 hover:text-gray-600 relative"
                 onClick={toggleCartMenu}
               >
-
-
-
-                <Image src="/images/cart-icon.png" alt="Favorites" width={22} height={22} quality={100} />
-              {counter?.cartCount !== null && counter?.cartCount > 0 &&(
-            <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-              { counter?.cartCount ?? 0}</span>)}
+                <Image
+                  src="/images/cart-icon.png"
+                  alt="Cart"
+                  width={22}
+                  height={22}
+                  quality={100}
+                />
+                {counter && counter.cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {counter.cartCount}
+                  </span>
+                )}
               </button>
             </div>
-
-
-
 
             {/* Mobile Menu Button */}
             <div className="flex items-center md:hidden">
@@ -81,7 +142,7 @@ export default function Navbar() {
               >
                 <span className="sr-only">Open main menu</span>
                 <svg
-                  className={`${isMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
+                  className={`${isMenuOpen ? "hidden" : "block"} h-6 w-6`}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -96,7 +157,7 @@ export default function Navbar() {
                   />
                 </svg>
                 <svg
-                  className={`${isMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
+                  className={`${isMenuOpen ? "block" : "hidden"} h-6 w-6`}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -117,37 +178,89 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`${
-            isMenuOpen ? 'absolute ' : 'hidden'
-          } pt-12 md:hidden top-0 bg-white z-40 h-[100vh] w-[80%]`}
+          className={`${isMenuOpen ? "absolute " : "hidden"} pt-12 md:hidden top-0 bg-white z-40 h-[100vh] w-[80%]`}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white " onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <Link href="/" className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600" onClick={() => setIsMenuOpen(false)}>
+          <div
+            className="px-2 pt-2 pb-3 space-y-1 bg-white "
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <Link
+              href="/"
+              className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Home
             </Link>
-            <Link href="/shop" className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href="/shop"
+              className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Shop
             </Link>
-            <Link href="/blog" className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href="/blog"
+              className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Blog
             </Link>
-            <Link href="/contact" className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600" onClick={() => setIsMenuOpen(false)}>
+            <Link
+              href="/contact"
+              className="block px-3 py-2 text-base font-medium text-gray-800 hover:text-gray-600"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Contact
             </Link>
-            <div className='pl-2 pt-3 flex gap-4'>
-            <Link href="#" className="text-gray-800 hover:text-gray-600">
-                <Image src="/images/heart-icon.png" alt="Favorites" width={22} height={22} quality={100} />
-              </Link>
+            <div className="pl-2 pt-3 flex gap-4">
+              <button
+                onClick={toggleWishlistMenu}
+                className="text-gray-800 hover:text-gray-600 relative"
+              >
+                <Image
+                  src="/images/heart-icon.png"
+                  alt="Wishlist"
+                  width={22}
+                  height={22}
+                  quality={100}
+                />
+                {wishlist && wishlist.wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {wishlist.wishlistCount}
+                  </span>
+                )}
+              </button>
+              <button
+                onClick={toggleSearchModal}
+                className="text-gray-800 hover:text-gray-600"
+              >
+                <Image
+                  src="/images/search-icon.png"
+                  alt="Search"
+                  width={22}
+                  height={22}
+                  quality={100}
+                />
+              </button>
               {/* Cart Icon */}
               <button
                 className="text-gray-800 hover:text-gray-600 relative"
                 onClick={toggleCartMenu}
               >
-                <Image src="/images/cart-icon.png" alt="Favorites" width={22} height={22} quality={100} />
-            <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-              2 </span>
+                <Image
+                  src="/images/cart-icon.png"
+                  alt="Cart"
+                  width={22}
+                  height={22}
+                  quality={100}
+                />
+                {counter && counter.cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {counter.cartCount}
+                  </span>
+                )}
               </button>
-              </div>
+            </div>
           </div>
         </div>
 
@@ -155,8 +268,19 @@ export default function Navbar() {
         {isCartMenuOpen && (
           <div className="absolute top-0 right-0 z-50">
             <CartMenu onClose={() => setIsCartMenuOpen(false)} />
-
           </div>
+        )}
+
+        {/* Wishlist Menu */}
+        {isWishlistMenuOpen && (
+          <div className="absolute top-0 right-0 z-50">
+            <WishlistMenu onClose={() => setIsWishlistMenuOpen(false)} />
+          </div>
+        )}
+
+        {/* Search Modal */}
+        {isSearchModalOpen && (
+          <SearchModal onClose={() => setIsSearchModalOpen(false)} />
         )}
       </nav>
     </>

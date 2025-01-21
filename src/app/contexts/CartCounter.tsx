@@ -1,5 +1,13 @@
-'use client'
-import React, { createContext, ReactNode, useState, useContext, useEffect } from "react";
+"use client";
+
+import React, {
+  createContext,
+  ReactNode,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+} from "react";
 
 interface CartItem {
   id: string;
@@ -33,9 +41,9 @@ export const CounterProvider = ({ children }: { children: ReactNode }) => {
 
   const addToCart = (product: CartItem) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find(item => item.id === product.id);
+      const existingItem = prevItems.find((item) => item.id === product.id);
       if (existingItem) {
-        return prevItems.map(item =>
+        return prevItems.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
@@ -47,27 +55,38 @@ export const CounterProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const removeFromCart = (productId: string) => {
-    setCartItems((prevItems) => prevItems.filter(item => item.id !== productId));
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.id !== productId)
+    );
   };
 
   const updateQuantity = (productId: string, newQuantity: number) => {
     setCartItems((prevItems) =>
-      prevItems.map(item =>
+      prevItems.map((item) =>
         item.id === productId ? { ...item, quantity: newQuantity } : item
       )
     );
   };
 
-  const getCartCount = () => {
+  const getCartCount = useCallback(() => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
+  }, [cartItems]);
 
   useEffect(() => {
     setCartCount(getCartCount());
-  }, [cartItems]);
+  }, [cartItems, getCartCount]);
 
   return (
-    <CounterContext.Provider value={{ cartItems, cartCount, addToCart, removeFromCart, updateQuantity, getCartCount }}>
+    <CounterContext.Provider
+      value={{
+        cartItems,
+        cartCount,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        getCartCount,
+      }}
+    >
       {children}
     </CounterContext.Provider>
   );
@@ -80,4 +99,3 @@ export const useCounter = () => {
   }
   return context;
 };
-

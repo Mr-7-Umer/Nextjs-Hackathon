@@ -3,48 +3,41 @@
 import Image from "next/image";
 import { X } from "lucide-react";
 import Link from "next/link";
-import { useCounter } from "../contexts/CartCounter";
+import { useWishlist } from "../contexts/WishlistContext";
 
-interface CartMenuProps {
+interface WishlistMenuProps {
   onClose: () => void;
 }
 
-export default function CartMenu({ onClose }: CartMenuProps) {
-  const { cartItems, removeFromCart } = useCounter();
-
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+export default function WishlistMenu({ onClose }: WishlistMenuProps) {
+  const { wishlistItems, removeFromWishlist } = useWishlist();
 
   return (
     <div className="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg font-poppins">
       <div className="p-6">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">Shopping Cart</h2>
+          <h2 className="text-xl font-semibold">Wishlist</h2>
           <div className="relative">
-            <Image
+            <img
               src="/images/close-cart.png"
-              width={20}
-              height={20}
-              alt="Close cart"
-              className="cursor-pointer"
+              className="w-5 h-5 cursor-pointer"
+              alt="Close wishlist"
               onClick={onClose}
             />
           </div>
         </div>
 
-        {/* Cart Items */}
+        {/* Wishlist Items */}
         <div className="space-y-4">
-          {cartItems.length === 0 ? (
-            <p>Your cart is empty.</p>
+          {wishlistItems.length === 0 ? (
+            <p>Your wishlist is empty.</p>
           ) : (
-            cartItems.map((item) => (
+            wishlistItems.map((item) => (
               <div key={item.id} className="flex gap-4 py-4 border-t">
                 <div className="relative w-24 h-24 bg-[#FFF9F3] rounded-lg overflow-hidden flex-shrink-0">
                   <Image
-                    src={item.image}
+                    src={item.image || "/placeholder.svg"}
                     alt={item.name}
                     fill
                     className="object-cover"
@@ -56,14 +49,12 @@ export default function CartMenu({ onClose }: CartMenuProps) {
                     <h3 className="font-medium">{item.name}</h3>
                     <button
                       className="text-gray-400 hover:text-gray-600"
-                      onClick={() => removeFromCart(item.id)}
+                      onClick={() => removeFromWishlist(item.id)}
                     >
                       <X className="w-5 h-5" />
                     </button>
                   </div>
-                  <div className="flex items-center mt-2">
-                    <span className="text-sm">{item.quantity}</span>
-                    <span className="text-sm mx-2">x</span>
+                  <div className="mt-2">
                     <span className="text-[#B88E2F]">
                       Rs.{" "}
                       {item.price.toLocaleString("en-IN", {
@@ -77,29 +68,16 @@ export default function CartMenu({ onClose }: CartMenuProps) {
           )}
         </div>
 
-        {/* Subtotal */}
-        <div className="flex justify-between items-center py-4 border-t mt-4">
-          <span className="font-medium">Subtotal</span>
-          <span className="text-[#B88E2F] font-medium">
-            Rs. {subtotal.toLocaleString("en-IN", { minimumFractionDigits: 2 })}
-          </span>
-        </div>
-
         {/* Action buttons */}
-        <div className="grid grid-cols-3 gap-4 mt-7">
-          <Link href="/cart">
-            <button className="w-full text-sm py-2 px-4" onClick={onClose}>
-              Cart
+        <div className="mt-6">
+          <Link href="/wishlist">
+            <button
+              className="w-full text-sm py-2 px-4 bg-[#B88E2F] text-white rounded-md hover:bg-[#A67E2B] transition-colors"
+              onClick={onClose}
+            >
+              View Wishlist
             </button>
           </Link>
-          <Link href="/checkout">
-            <button className="w-full text-sm py-2 px-4" onClick={onClose}>
-              Checkout
-            </button>
-          </Link>
-          {/* <Link href='/comparison'>
-            <button className="w-full text-sm py-2 px-4" onClick={onClose}>Comparison</button>
-          </Link> */}
         </div>
       </div>
     </div>

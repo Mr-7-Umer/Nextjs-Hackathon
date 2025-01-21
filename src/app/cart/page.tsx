@@ -1,57 +1,60 @@
 "use client";
 
-import Image from 'next/image'
-import { ChevronRight } from 'lucide-react'
-import Link from 'next/link'
-import { useCounter } from '../contexts/CartCounter'
-import { useState, useEffect } from 'react'
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { useCounter } from "../contexts/CartCounter";
+import { useState, useEffect } from "react";
 
 const features = [
   {
-    icon: '/images/trophy.png',
-    title: 'High Quality',
-    description: 'crafted from top materials'
+    icon: "/images/trophy.png",
+    title: "High Quality",
+    description: "crafted from top materials",
   },
   {
-    icon: '/images/tick.png',
-    title: 'Warranty Protection',
-    description: 'Over 2 years'
+    icon: "/images/tick.png",
+    title: "Warranty Protection",
+    description: "Over 2 years",
   },
   {
-    icon: '/images/gift.png',
-    title: 'Free Shipping',
-    description: 'Order over 150 $'
+    icon: "/images/gift.png",
+    title: "Free Shipping",
+    description: "Order over 150 $",
   },
   {
-    icon: '/images/support.png',
-    title: '24 / 7 Support',
-    description: 'Dedicated support'
-  }
-]
+    icon: "/images/support.png",
+    title: "24 / 7 Support",
+    description: "Dedicated support",
+  },
+];
 
 export default function Cart() {
-  const { cartItems, removeFromCart, updateQuantity } = useCounter()
-  const [quantities, setQuantities] = useState<{ [key: string]: number }>({}) // Changed to string keys
+  const { cartItems, removeFromCart, updateQuantity } = useCounter();
+  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
     const newQuantities = cartItems.reduce((acc, item) => {
       acc[item.id] = item.quantity;
       return acc;
-    }, {} as { [key: string]: number }); // Changed to string keys
+    }, {} as { [key: string]: number });
     setQuantities(newQuantities);
   }, [cartItems]);
 
-  const handleQuantityChange = (id: string, newQuantity: number) => { // Changed to accept string id
+  const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity > 0) {
       updateQuantity(id, newQuantity);
-      setQuantities(prev => ({ ...prev, [id]: newQuantity }));
+      setQuantities((prev) => ({ ...prev, [id]: newQuantity }));
     }
-  }
+  };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * (quantities[item.id] || item.quantity), 0)
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * (quantities[item.id] || item.quantity),
+    0
+  );
 
   return (
-    <div className='overflow-hidden'>
+    <div className="overflow-hidden">
       <div className="relative h-[280px] w-full">
         <Image
           src="/images/comparison-bg.png"
@@ -94,12 +97,13 @@ export default function Cart() {
             </div>
 
             {cartItems.length === 0 ? (
-              <div className="text-center py-8">
-                Your cart is empty.
-              </div>
+              <div className="text-center py-8">Your cart is empty.</div>
             ) : (
               cartItems.map((item) => (
-                <div key={item.id} className="grid grid-cols-[2fr,1fr,1fr,1fr,auto] gap-4 items-center p-4">
+                <div
+                  key={item.id}
+                  className="grid grid-cols-[2fr,1fr,1fr,1fr,auto] gap-4 items-center p-4"
+                >
                   <div className="flex items-center gap-4">
                     <div className="relative w-20 h-20 bg-cream rounded-lg overflow-hidden">
                       <Image
@@ -112,28 +116,41 @@ export default function Cart() {
                         sizes="80px"
                       />
                     </div>
-                    <span className="text-sm md:text-base text-lightGray">{item.name}</span>
+                    <span className="text-sm md:text-base text-lightGray">
+                      {item.name}
+                    </span>
                   </div>
                   <div className="text-sm md:text-base text-lightGray">
                     Rs. {item.price.toLocaleString()}
                   </div>
-                  <div className='text-center'>
+                  <div className="text-center">
                     <input
                       type="number"
                       value={quantities[item.id] || item.quantity}
-                      onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+                      onChange={(e) =>
+                        handleQuantityChange(item.id, parseInt(e.target.value))
+                      }
                       className="w-16 px-2 py-1 border border-lightGray rounded-md text-center text-sm"
                       min="1"
                     />
                   </div>
                   <div className="hidden lg:block text-sm md:text-base">
-                    Rs. {((quantities[item.id] || item.quantity) * item.price).toLocaleString()}
+                    Rs.{" "}
+                    {(
+                      (quantities[item.id] || item.quantity) * item.price
+                    ).toLocaleString()}
                   </div>
-                  <button 
+                  <button
                     className="text-gray-500 hover:text-gray-700"
                     onClick={() => removeFromCart(item.id)}
                   >
-                    <img src='/images/brown-bin.png' className="w-4 h-4" alt="Remove item" />
+                    <Image
+                      src="/images/brown-bin.png"
+                      width={16}
+                      height={16}
+                      alt="Remove item"
+                      className="w-4 h-4"
+                    />
                   </button>
                 </div>
               ))
@@ -146,15 +163,19 @@ export default function Cart() {
             <div className="space-y-4 mb-6">
               <div className="flex justify-between items-center">
                 <span className="text-sm md:text-base">Subtotal</span>
-                <span className="text-sm md:text-base">Rs. {subtotal.toLocaleString()}</span>
+                <span className="text-sm md:text-base">
+                  Rs. {subtotal.toLocaleString()}
+                </span>
               </div>
               <div className="flex justify-between items-center font-medium">
                 <span className="text-sm md:text-base">Total</span>
-                <span className="text-[#B88E2F] text-sm md:text-base">Rs. {subtotal.toLocaleString()}</span>
+                <span className="text-[#B88E2F] text-sm md:text-base">
+                  Rs. {subtotal.toLocaleString()}
+                </span>
               </div>
             </div>
-            <Link href='/checkout'>
-              <button 
+            <Link href="/checkout">
+              <button
                 className="w-32 text-sm md:text-base border border-black py-2 rounded"
                 disabled={cartItems.length === 0}
               >
@@ -167,8 +188,8 @@ export default function Cart() {
       <div className="w-full bg-[#FAF3EA] mx-auto px-4 py-16 mt-6 pl-6 lg:pl-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {features.map((feature) => (
-            <div 
-              key={feature.title} 
+            <div
+              key={feature.title}
               className="flex items-center gap-4 pl-8 md:pl-0"
             >
               <div className="mb-4">
@@ -180,7 +201,7 @@ export default function Cart() {
                   quality={100}
                 />
               </div>
-              <div className='flex flex-col'>
+              <div className="flex flex-col">
                 <h3 className="text-[#333333] text-xl font-semibold mb-2">
                   {feature.title}
                 </h3>
@@ -193,6 +214,5 @@ export default function Cart() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

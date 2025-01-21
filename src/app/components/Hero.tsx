@@ -25,7 +25,8 @@ export default function Hero() {
             Discover Our<br />New Collection
           </h1>
           <p className="text-gray-700 text-base lg:text-lg mb-8 ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
+          Furniro, where style meets comfort and quality
+          <br /> Transform your space effortlessly
           </p>
           <div>
             <Link 
