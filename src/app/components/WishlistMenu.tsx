@@ -19,9 +19,11 @@ export default function WishlistMenu({ onClose }: WishlistMenuProps) {
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-semibold">Wishlist</h2>
           <div className="relative">
-            <img
+            <Image
               src="/images/close-cart.png"
-              className="w-5 h-5 cursor-pointer"
+              width={20}
+              height={20}
+              className="cursor-pointer"
               alt="Close wishlist"
               onClick={onClose}
             />
