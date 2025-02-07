@@ -1,0 +1,9 @@
+Feature,Description,,Test Case,Actual Result,Status,Comments
+Homepage,Testing homepage performance and responsiveness,Page should load smoothly within 3 seconds,Page should load within 3 seconds,Loaded in 2.5 seconds,✅ Pass,Verified across desktop and mobile
+Homepage,Checking homepage layout consistency,Ensure all sections appear correctly,"Hero banner, categories, and testimonials are aligned properly",Layout appeared correctly,✅ Pass,Sections correctly structured on all devices
+Product Page,Validating product image display,Images should load instantly,No delay in loading images when clicked,Images loaded smoothly,✅ Pass,No broken images found
+Product Page,Testing product details visibility,"Product title, price, and description should be displayed",Product details should be clear and readable,Details rendered correctly,✅ Pass,Works as expected on different screen sizes
+Cart,Verifying add-to-cart functionality,Adding a product should update the cart count,Cart count should increase when adding an item,Count increased successfully,✅ Pass,Item successfully added to cart
+Cart,Testing item removal from cart,Removing a product should decrease item count,Cart count should decrease when removing an item,Count updated correctly,✅ Pass,Product removed successfully
+Search,Ensuring search functionality works correctly,Searching for a product should return relevant results,Matching products should appear instantly,Search results displayed properly,✅ Pass,Search accuracy verified
+Checkout,Validating checkout process,Users should be able to complete checkout smoothly,No errors in the checkout process,Checkout completed successfully,✅ Pass,No issues detected in checkout
